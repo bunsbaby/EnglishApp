@@ -1,0 +1,22 @@
+:root {
+    --color-1E1E1E: #1E1E1E;
+    --color-888C9C: #888C9C;
+    --color-E6E8EC: #E6E8EC;
+    --color-0F6459: #0F6459;
+    --color-A36E2A: #A36E2A;
+    --color-23262F: #23262F;
+    --color-FFFFFF: #fff;
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&family=Noto+Sans&display=swap');
+  
+  html, body {
+    font-family: "Nunito", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px !important;
+  }
+  .demo-logo-vertical {
+    height: 120px;
+    margin: 16px;
+    background: rgba(255,255,255,.2);
+    border-radius: 6px;
+}
