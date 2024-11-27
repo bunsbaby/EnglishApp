@@ -8,6 +8,7 @@ namespace EnglishApp.Models.Classes
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public int CourseId { get; set; }
         public int TeacherId { get; set; }
         public int LessonId { get; set; }
     }

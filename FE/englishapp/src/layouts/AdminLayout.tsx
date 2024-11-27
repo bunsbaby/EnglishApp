@@ -34,7 +34,7 @@ const AdminLayout = () => {
                     <Menu.Item key={2} onClick={() => navigate("/course")}><ProjectOutlined /> <span>Khóa Học</span></Menu.Item>
                     <Menu.Item key={3} onClick={() => navigate("/teacher")}><UserOutlined /> <span>Giảng Viên</span></Menu.Item>
                     <Menu.Item key={4} onClick={() => navigate("/student")}><TeamOutlined /> <span>Học Viên</span></Menu.Item>
-                    <Menu.Item key={2} onClick={() => navigate("/class")}><ReadOutlined /> <span>Lớp học</span></Menu.Item>
+                    <Menu.Item key={9} onClick={() => navigate("/class")}><ReadOutlined /> <span>Lớp học</span></Menu.Item>
                     <Menu.Item key={5} onClick={() => navigate("/document")}><FileAddOutlined /> <span>Tài Liệu</span></Menu.Item>
                     <Menu.Item key={6} onClick={() => navigate("/revenue")}><WalletOutlined /> <span>Doanh Thu</span></Menu.Item>
                     <Menu.Item key={7} onClick={() => navigate("/calendar")}><CalendarOutlined /> <span>Lịch</span></Menu.Item>

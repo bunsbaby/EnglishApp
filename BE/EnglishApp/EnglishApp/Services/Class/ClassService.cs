@@ -19,6 +19,7 @@ namespace EnglishApp.Services.Class
                 CreatedAt = DateTime.Now,
                 Description = input.Description,
                 Name = input.Name,
+                CourseId = input.CourseId,
                 TeacherId = input.TeacherId,
                 LessonId = input.LessonId,
             };
@@ -32,6 +33,7 @@ namespace EnglishApp.Services.Class
             {
                 entity.Description = input.Description;
                 entity.Name = input.Name;
+                entity.CourseId = input.CourseId;
                 entity.TeacherId = input.TeacherId;
                 entity.LessonId = input.LessonId;
                 entity.UpdatedAt = DateTime.Now;
@@ -42,18 +44,35 @@ namespace EnglishApp.Services.Class
 
         public async Task<ClassDto> GetClassById(int id)
         {
-            var iQueryable = englishContext.Classes.Join(englishContext.Teachers, c => c.TeacherId, t => t.Id, (c, t) => new { c, t })
-                .Join(englishContext.Lessons, c2 => c2.c.LessonId, l => l.Id, (c2, l) => new { c = c2.c, t = c2.t, l });
-            iQueryable = iQueryable.Where(m => m.c.Id == id);
+            var iQueryable = englishContext.Classes.Join
+                (
+                    englishContext.Teachers, cl
+                        => cl.TeacherId, t => t.Id, (cl, t)
+                            => new { cl, t }
+                )
+                .Join
+                (
+                    englishContext.Lessons, cl_t
+                        => cl_t.cl.LessonId, l => l.Id, (cl_t, l)
+                            => new { cl = cl_t.cl, t = cl_t.t, l }
+                ).Join
+                (
+                    englishContext.Courses, cl_t_l
+                        => cl_t_l.cl.CourseId, c => c.Id, (cl_t_l, c)
+                            => new { cl = cl_t_l.cl, t = cl_t_l.t, cl_t_l.l, c }
+                 );
+            iQueryable = iQueryable.Where(m => m.cl.Id == id);
             var data = await iQueryable.Select(m => new ClassDto
             {
-                Id = m.c.Id,
-                Name = m.c.Name,
+                Id = m.cl.Id,
+                Name = m.cl.Name,
+                Description = m.cl.Description,
+                CourseId = m.c.Id,
+                CourseName = m.c.Name,
+                TeacherId = m.t.Id,
                 TeacherName = m.t.Name,
-                Description = m.c.Description,
-                LessonId = m.c.LessonId,
                 LessonName = m.l.Name,
-                TeacherId = m.c.TeacherId,
+                LessonId = m.l.Id
             }).FirstOrDefaultAsync();
 
             return data;
@@ -61,19 +80,39 @@ namespace EnglishApp.Services.Class
 
         public async Task<List<ClassDto>> GetListClass(string search = "")
         {
-            var iQueryable =  englishContext.Classes.Join(englishContext.Teachers, c => c.TeacherId, t => t.Id, (c, t) => new { c, t })
-                .Join(englishContext.Lessons, c2 => c2.c.LessonId, l => l.Id, (c2, l) => new { c = c2.c, t = c2.t, l });
+            var iQueryable =  englishContext.Classes.Join
+                (
+                    englishContext.Teachers, cl 
+                        => cl.TeacherId, t => t.Id, (cl, t) 
+                            => new { cl, t}
+                )
+                .Join
+                (
+                    englishContext.Lessons, cl_t 
+                        => cl_t.cl.LessonId, l => l.Id, (cl_t, l) 
+                            => new { cl = cl_t.cl, t = cl_t.t, l }
+                ).Join
+                (
+                    englishContext.Courses, cl_t_l
+                        => cl_t_l.cl.CourseId, c => c.Id, (cl_t_l, c)
+                            => new { cl = cl_t_l.cl, t = cl_t_l.t, cl_t_l.l, c }
+                 );
             if(!string.IsNullOrWhiteSpace(search))
             {
                 iQueryable = iQueryable.Where(m => EF.Functions.Like(m.c.Name.ToLower(), $"%{search.ToLower()}%"));
             }
-            iQueryable = iQueryable.Where(m => !m.c.DeletedAt.HasValue);
+            iQueryable = iQueryable.Where(m => !m.cl.DeletedAt.HasValue);
             var data = await iQueryable.Select(m => new ClassDto
             {
-                Id = m.c.Id,
-                Name = m.c.Name,
+                Id = m.cl.Id,
+                Name = m.cl.Name,
+                Description = m.cl.Description,
+                CourseId = m.c.Id,
+                CourseName = m.c.Name,
+                TeacherId = m.t.Id,
                 TeacherName = m.t.Name,
-                LessonName = m.l.Name
+                LessonName = m.l.Name,
+                LessonId = m.l.Id
             }).ToListAsync();
 
             return data;

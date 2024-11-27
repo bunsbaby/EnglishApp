@@ -19,6 +19,7 @@ namespace EnglishApp.Services.Course
                 CreatedAt = DateTime.Now,
                 Description = input.Description,
                 Name = input.Name,
+                PackageType = input.PackageType,
                 StartDated = input.StartDated
             };
             englishContext.Courses.Add(entity);
@@ -30,6 +31,7 @@ namespace EnglishApp.Services.Course
             if(entity != null)
             {
                 entity.StartDated = input.StartDated;
+                entity.PackageType = input.PackageType;
                 entity.Description = input.Description;
                 entity.Name = input.Name;
                 entity.UpdatedAt = DateTime.Now;
@@ -40,12 +42,13 @@ namespace EnglishApp.Services.Course
 
         public async Task<CourseDto> GetCourseById(int id)
         {
-            var iQueryable = englishContext.Courses;
+            var iQueryable = englishContext.Courses.Where(n => n.Id == id);
             var data = await iQueryable.Select(m => new CourseDto
             {
                 Id = m.Id,
                 Name = m.Name,
                 Description = m.Description,
+                PackageType = m.PackageType,
                 StartDated = m.StartDated
             }).FirstOrDefaultAsync();
 
@@ -64,6 +67,9 @@ namespace EnglishApp.Services.Course
             {
                 Id = m.Id,
                 Name = m.Name,
+                Description = m.Name,
+                PackageType = m.PackageType,
+                StartDated = m.StartDated
             }).ToListAsync();
 
             return data;
@@ -146,7 +152,8 @@ namespace EnglishApp.Services.Course
         public async Task<bool> DeleteCourse(int id)
         {
             var entity = await englishContext.Courses.FirstOrDefaultAsync(c => c.Id == id);
-            if(entity != null)
+            var is_class_reamin = await englishContext.Classes.Where(c => !c.DeletedAt.HasValue).FirstOrDefaultAsync(c => c.CourseId == id);
+            if (entity != null && is_class_reamin == null)
             {
                 entity.DeletedAt = DateTime.Now;
                 return await englishContext.SaveChangesAsync() > 0;

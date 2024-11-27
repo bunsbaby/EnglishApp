@@ -1,26 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\",
+  "WorkspaceRootPath": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\datn\\be\\englishapp\\englishapp\\entity\\courseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|solutionrelative:englishapp\\entity\\courseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\datn\\be\\englishapp\\englishapp\\entity\\classentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|solutionrelative:englishapp\\entity\\classentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\datn\\be\\englishapp\\englishapp\\services\\course\\courseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\englishapp\\be\\englishapp\\englishapp\\services\\course\\courseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|solutionrelative:englishapp\\services\\course\\courseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\datn\\be\\englishapp\\englishapp\\models\\courses\\courseinsertdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\englishapp\\be\\englishapp\\englishapp\\entity\\courseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|solutionrelative:englishapp\\entity\\courseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\englishapp\\be\\englishapp\\englishapp\\services\\class\\classservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|solutionrelative:englishapp\\services\\class\\classservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\englishapp\\be\\englishapp\\englishapp\\models\\courses\\courseinsertdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|solutionrelative:englishapp\\models\\courses\\courseinsertdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\datn\\be\\englishapp\\englishapp\\models\\courses\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\englishapp\\be\\englishapp\\englishapp\\models\\courses\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|solutionrelative:englishapp\\models\\courses\\coursedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|c:\\bunsbaby\\lvtn\\englishapp\\be\\englishapp\\englishapp\\controllers\\coursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F51B212-B9C7-4429-8016-1C40DD66864F}|EnglishApp\\EnglishApp.csproj|solutionrelative:englishapp\\controllers\\coursescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 94,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -66,66 +70,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ClassEntity.cs",
-              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\Entity\\ClassEntity.cs",
-              "RelativeDocumentMoniker": "EnglishApp\\Entity\\ClassEntity.cs",
-              "ToolTip": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\Entity\\ClassEntity.cs",
-              "RelativeToolTip": "EnglishApp\\Entity\\ClassEntity.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "ClassService.cs",
+              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Services\\Class\\ClassService.cs",
+              "RelativeDocumentMoniker": "EnglishApp\\Services\\Class\\ClassService.cs",
+              "ToolTip": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Services\\Class\\ClassService.cs",
+              "RelativeToolTip": "EnglishApp\\Services\\Class\\ClassService.cs",
+              "ViewState": "AQIAAFMAAAAAAAAAAAAwwGcAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T17:29:35.666Z",
+              "WhenOpened": "2024-11-27T19:57:36.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CourseInsertDto.cs",
+              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Models\\Courses\\CourseInsertDto.cs",
+              "RelativeDocumentMoniker": "EnglishApp\\Models\\Courses\\CourseInsertDto.cs",
+              "ToolTip": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Models\\Courses\\CourseInsertDto.cs",
+              "RelativeToolTip": "EnglishApp\\Models\\Courses\\CourseInsertDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T19:48:58.129Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CourseEntity.cs",
+              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Entity\\CourseEntity.cs",
+              "RelativeDocumentMoniker": "EnglishApp\\Entity\\CourseEntity.cs",
+              "ToolTip": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Entity\\CourseEntity.cs",
+              "RelativeToolTip": "EnglishApp\\Entity\\CourseEntity.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-27T19:48:04.827Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "CourseDto.cs",
-              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\Models\\Courses\\CourseDto.cs",
+              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Models\\Courses\\CourseDto.cs",
               "RelativeDocumentMoniker": "EnglishApp\\Models\\Courses\\CourseDto.cs",
-              "ToolTip": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\Models\\Courses\\CourseDto.cs",
+              "ToolTip": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Models\\Courses\\CourseDto.cs",
               "RelativeToolTip": "EnglishApp\\Models\\Courses\\CourseDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T19:28:39.563Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CourseInsertDto.cs",
-              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\Models\\Courses\\CourseInsertDto.cs",
-              "RelativeDocumentMoniker": "EnglishApp\\Models\\Courses\\CourseInsertDto.cs",
-              "ToolTip": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\Models\\Courses\\CourseInsertDto.cs",
-              "RelativeToolTip": "EnglishApp\\Models\\Courses\\CourseInsertDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T19:28:32.812Z",
+              "WhenOpened": "2024-11-27T19:46:35.083Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CourseService.cs",
-              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\Services\\Course\\CourseService.cs",
-              "RelativeDocumentMoniker": "EnglishApp\\Services\\Course\\CourseService.cs",
-              "ToolTip": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\Services\\Course\\CourseService.cs",
-              "RelativeToolTip": "EnglishApp\\Services\\Course\\CourseService.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAAgwEUAAAAJAAAA",
+              "DocumentIndex": 5,
+              "Title": "CoursesController.cs",
+              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Controllers\\CoursesController.cs",
+              "RelativeDocumentMoniker": "EnglishApp\\Controllers\\CoursesController.cs",
+              "ToolTip": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Controllers\\CoursesController.cs",
+              "RelativeToolTip": "EnglishApp\\Controllers\\CoursesController.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T19:25:09.211Z",
+              "WhenOpened": "2024-11-27T19:46:56.572Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CourseEntity.cs",
-              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\Entity\\CourseEntity.cs",
-              "RelativeDocumentMoniker": "EnglishApp\\Entity\\CourseEntity.cs",
-              "ToolTip": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\Entity\\CourseEntity.cs",
-              "RelativeToolTip": "EnglishApp\\Entity\\CourseEntity.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "CourseService.cs",
+              "DocumentMoniker": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Services\\Course\\CourseService.cs",
+              "RelativeDocumentMoniker": "EnglishApp\\Services\\Course\\CourseService.cs",
+              "ToolTip": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\Services\\Course\\CourseService.cs",
+              "RelativeToolTip": "EnglishApp\\Services\\Course\\CourseService.cs",
+              "ViewState": "AQIAAI0AAAAAAAAAAAAAwJkAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-24T19:25:03.667Z",
+              "WhenOpened": "2024-11-27T19:47:00.395Z",
               "EditorCaption": ""
             }
           ]

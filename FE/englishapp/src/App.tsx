@@ -5,6 +5,7 @@ import Login from 'pages/Login/Login';
 import Register from 'pages/Register/Register';
 import Teacher from 'pages/Teacher/Teacher';
 import Student from 'pages/Student/Student';
+import Class from 'pages/Class/Class';
 import Course from 'pages/Course/Course';
 import Document from 'pages/Document/Document';
 import Home from 'pages/Home/Home';
@@ -34,6 +35,10 @@ const App = () => {
             {
               path: "/course",
               element: <Course />
+            },
+            {
+              path: "/class",
+              element: <Class />
             },
             {
               path: "/document",

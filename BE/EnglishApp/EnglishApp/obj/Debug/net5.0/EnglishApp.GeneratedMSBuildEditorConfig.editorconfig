@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = EnglishApp
-build_property.ProjectDir = C:\BunsBaby\LVTN\DATN\BE\EnglishApp\EnglishApp\
+build_property.ProjectDir = C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\

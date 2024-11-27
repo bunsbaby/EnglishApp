@@ -1324,11 +1324,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\EnglishApp.csproj",
+      "projectUniqueName": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\EnglishApp.csproj",
       "projectName": "EnglishApp",
-      "projectPath": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\EnglishApp.csproj",
+      "projectPath": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\EnglishApp.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\obj\\",
+      "outputPath": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

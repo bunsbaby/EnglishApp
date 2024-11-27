@@ -52,33 +52,33 @@ const ViewModal: React.FC<IAddTeacherProps> = (props: IAddTeacherProps) => {
                                 {curentTeacher?.name}
                             </Col>
                         </Row>
-                        <Row>
-                            <Col span={24} style={{ fontSize: '16px', fontWeight: 400 }}>
-                                Mô tả trình độ, học vấn: {curentTeacher?.education}
-                            </Col>
-                        </Row>
                         <Row style={{ marginTop: '15px' }}>
-                            <Col span={4}>Mã ID:</Col>
+                            <Col span={4}>Mã ID</Col>
                             <Col span={20}>{curentTeacher?.id?.toString()}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
-                            <Col span={4}>E-mail:</Col>
+                            <Col span={4}>E-mail</Col>
                             <Col span={20}>{curentTeacher?.email}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
-                            <Col span={4}>Giới tính:</Col>
+                            <Col span={4}>Giới tính</Col>
                             <Col span={20}>
                                 <Space size="middle">
                                     {curentTeacher?.genderId === 1 ? 'Nam' : (curentTeacher?.genderId === 2 ? 'Nữ' : 'Khác')}
                                 </Space>
                             </Col>
                         </Row>
+                        <Row>
+                            <Col span={24} style={{ fontSize: '16px', fontWeight: 400 }}>
+                                Mô tả trình độ, học vấn {curentTeacher?.education}
+                            </Col>
+                        </Row>
                         <Row style={{ marginTop: '15px' }}>
-                            <Col span={4}>Địa chỉ:</Col>
+                            <Col span={4}>Địa chỉ</Col>
                             <Col span={20}>{curentTeacher?.address}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
-                            <Col span={4}>Ngày làm việc:</Col>
+                            <Col span={4}>Ngày làm việc</Col>
                             <Col span={20}></Col>
                         </Row>
                     </Col>

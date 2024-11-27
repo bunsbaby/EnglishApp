@@ -1,11 +1,7 @@
 interface CourseDto {
     id: number,
     name: string,
-    teacherName: string,
-    className: string,
-    lessonName: string // Buổi học
-    teacherId: number,
-    lessonId: number,
+    description: string,
     startDated: Date,
     packageType: number
 }

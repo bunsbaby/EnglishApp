@@ -46,39 +46,29 @@ const ViewModal: React.FC<IAddCourseProps> = (props: IAddCourseProps) => {
                 <Row>
                     <Col span={24}>
                         <Row style={{ marginTop: '15px' }}>
-                            <Col span={6}>Mã ID:</Col>
+                            <Col span={6}>Mã ID</Col>
                             <Col span={18}>{curentCourse?.id?.toString()}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
                             <Col span={6}>
-                                Tên khóa
+                                Tên khóa học
                             </Col>
                             <Col span={18}>{curentCourse?.name}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
-                            <Col span={6}>Giảng viên:</Col>
-                            <Col span={18}>{curentCourse?.teacherName}</Col>
-                        </Row>
-                        <Row style={{ marginTop: '15px' }}>
-                            <Col span={6}>Lớp:</Col>
-                            <Col span={18}>
-                                {curentCourse?.className}
+                            <Col span={6}>
+                                Mô tả
                             </Col>
+                            <Col span={18}>{curentCourse?.description}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
-                            <Col span={6}>Buổi Học:</Col>
-                            <Col span={18}>
-                                {curentCourse?.lessonName}
-                            </Col>
-                        </Row>
-                        <Row style={{ marginTop: '15px' }}>
-                            <Col span={6}>Thời Gian Bắt Đầu:</Col>
+                            <Col span={6}>Thời Gian Bắt Đầu</Col>
                             <Col span={18}>
                                 {moment(curentCourse?.startDated).format("DD-MM-YYYY")}
                             </Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
-                            <Col span={6}>Gói Khóa Học:</Col>
+                            <Col span={6}>Gói Khóa Học</Col>
                             <Col span={18}>
                                 {curentCourse?.packageType + ` Tháng`}
                             </Col>

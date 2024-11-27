@@ -1,61 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Form, Input, Select, message, DatePicker } from 'antd';
-import CourseInsertDto from './models/CourseInsertDto';
+import ClassInsertDto from './models/ClassInsertDto';
 import axios from '../../common/baseAxios';
 import TeacherDto from 'pages/Teacher/models/TeacherDto';
-import ILessonDto from 'pages/Course/models/LessonDto';
-import PackageCourseType from 'pages/Course/models/PackageCourseType';
-import CourseDto from './models/CourseDto';
+import ILessonDto from 'pages/Class/models/LessonDto';
+import ClassDto from './models/ClassDto';
 import dayjs from 'dayjs';
-interface IAddCourseProps {
+interface IAddClassProps {
     open: boolean,
     closeForm: Function,
-    curentCourse: CourseDto
+    curentClass: ClassDto
 }
 interface IOptions {
     value: Number,
     label: String
 };
-const EditModal: React.FC<IAddCourseProps> = (props: IAddCourseProps) => {
-    const { open, closeForm, curentCourse } = props;
+const EditModal: React.FC<IAddClassProps> = (props: IAddClassProps) => {
+    const { open, closeForm, curentClass } = props;
     const [teachersOptions, setTeachers]  = useState<any>(Array<IOptions>);
     const [lessonOptions, setLessons] = useState<any>(Array<IOptions>);
-    const packageCourse: Array<IOptions> = [
-        {
-            label: `1 tháng`,
-            value: PackageCourseType.OneMonth
-        },
-        {
-            label: `2 tháng`,
-            value: PackageCourseType.TwoMonth
-        },
-        {
-            label: `3 tháng`,
-            value: PackageCourseType.ThreeMonth
-        },
-        {
-            label: `4 tháng`,
-            value: PackageCourseType.FourMonth
-        },
-        {
-            label: `5 tháng`,
-            value: PackageCourseType.FiveMonth
-        },
-        {
-            label: `6 tháng`,
-            value: PackageCourseType.SixMonth
-        },
-        { 
-            label: `9 tháng`,
-            value: PackageCourseType.NineMonth
-        },
-        { 
-            label: `12 tháng`,
-            value: PackageCourseType.OneYear
-        }
-    ];
+    const [courseOptions, setCourses] = useState<any>(Array<IOptions>);
     useEffect(() => {
         getTeachers();
+        getCourses();
         getLessons();
     }, [])
     const getTeachers = () => {
@@ -75,7 +42,7 @@ const EditModal: React.FC<IAddCourseProps> = (props: IAddCourseProps) => {
         })
     }
     const getLessons = () => {
-        axios.get(`Courses/GetLessons`).then((res) => {
+        axios.get(`Classes/GetLessons`).then((res) => {
             if(res.data.status) {
                 let lessons: Array<ILessonDto> = res.data.data;
                 let options: Array<IOptions> = new Array<IOptions>();
@@ -90,10 +57,26 @@ const EditModal: React.FC<IAddCourseProps> = (props: IAddCourseProps) => {
             }
         })
     }
-    const onFinish = (input: CourseInsertDto) => {
-        axios.put(`Courses/${curentCourse?.id}`, input).then((res) => {
+    const getCourses = () => {
+        axios.get(`Courses`).then((res) => {
+            if(res.data.status) {
+                let courses: Array<ILessonDto> = res.data.data;
+                let options: Array<IOptions> = new Array<IOptions>();
+                courses.forEach((m) => {
+                    let option: IOptions = {
+                        label: m.name,
+                        value: m.id
+                    };
+                    options.push(option);
+                })
+                setCourses(options);
+            }
+        })
+    }
+    const onFinish = (input: ClassInsertDto) => {
+        axios.put(`Classes/${curentClass?.id}`, input).then((res) => {
             if (res?.data.status === true) {
-                message.success('Sửa khóa học thành công.')
+                message.success('Sửa lớp học thành công.')
                 closeForm(true);
             }
         })
@@ -116,16 +99,26 @@ const EditModal: React.FC<IAddCourseProps> = (props: IAddCourseProps) => {
                     onFinish={onFinish}
                     autoComplete="off"
                     initialValues={{
-                        ["name"]: curentCourse?.name,
-                        ["teacherId"]: curentCourse?.teacherId,
-                        ["lessonId"]: curentCourse?.lessonId,
-                        ["startDated"]: dayjs(curentCourse?.startDated),
-                        ["packageType"]: curentCourse?.packageType,
-                        ["className"]: curentCourse?.className
+                        ["name"]: curentClass?.name,
+                        ["description"]: curentClass?.description,
+                        ["courseId"]: curentClass?.courseId,
+                        ["teacherId"]: curentClass?.teacherId,
+                        ["lessonId"]: curentClass?.lessonId
                     }}
                 >
-                    <Form.Item label="Khóa học" name="name" rules={[{ required: true, message: 'Vui lòng nhập khóa học!' }]}>
-                        <Input placeholder='Tên khóa học' />
+                    <Form.Item label="Lớp học" name="name" rules={[{ required: true, message: 'Vui lòng nhập lớp học!' }]}>
+                        <Input placeholder='Tên lớp học' />
+                    </Form.Item>
+                    <Form.Item label="Mô tả lớp học" name="description" rules={[{ message: 'Vui lòng nhập mô tả!' }]}>
+                        <Input placeholder='Mô tả lớp học' />
+                    </Form.Item>
+                    <Form.Item name="courseId" label="Khóa học" rules={[{ required: true, message: 'Vui lòng chọn Khóa học!' }]}>
+                        <Select
+                            placeholder="Chọn Khóa học"
+                            allowClear
+                            options={courseOptions}
+                        >
+                        </Select>
                     </Form.Item>
                     <Form.Item name="teacherId" label="Giảng viên" rules={[{ required: true, message: 'Vui lòng chọn giảng viên !' }]}>
                         <Select
@@ -135,43 +128,11 @@ const EditModal: React.FC<IAddCourseProps> = (props: IAddCourseProps) => {
                         >
                         </Select>
                     </Form.Item>
-                    <Form.Item
-                        label="Lớp"
-                        name="className"
-                        rules={[
-                            { required: true, message: 'Vui lòng nhập tên lớp!' },
-                        ]}
-                    >
-                        <Input placeholder='Tên lớp học' />
-                    </Form.Item>
                     <Form.Item name="lessonId" label="Buổi học" rules={[{ required: true, message: 'Vui lòng chọn buổi học !' }]}>
                         <Select
                             placeholder="Chọn buổi học"
                             allowClear
                             options={lessonOptions}
-                        >
-                        </Select>
-                    </Form.Item>
-                    <Form.Item
-                        label="Thời gian bắt đầu"
-                        name="startDated"
-                        rules={[
-                            { required: true, message: 'Vui lòng nhập thời gian bắt đầu khóa học!' },
-                        ]}
-                    >
-                         <DatePicker placeholder='Thời gian bắt đầu khóa học' />
-                    </Form.Item>
-                    <Form.Item
-                        label="Gói khóa học"
-                        name="packageType"
-                        rules={[
-                            { required: true, message: 'Vui lòng chọn gói khóa học!' },
-                        ]}
-                    >
-                        <Select
-                            placeholder="Chọn gói khóa học"
-                            allowClear
-                            options={packageCourse}
                         >
                         </Select>
                     </Form.Item>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BmHFi04xjKjQCpd5Bi3pcJPjA9gAVd4Q/poCrUU5IJImKSy1jqniaKXSNsctE+sbWhXOJWgF7RsIzkrnP1ZlJQ==",
+  "dgSpecHash": "H7nD/num5aGOTVtQ431lsJgDn6L5RjX1z34jWPfDEPWxkqdpGzO6fMTEel5LeChgWL9MnUpnyXspbUS/gqGx8g==",
   "success": true,
-  "projectFilePath": "C:\\BunsBaby\\LVTN\\DATN\\BE\\EnglishApp\\EnglishApp\\EnglishApp.csproj",
+  "projectFilePath": "C:\\BunsBaby\\LVTN\\EnglishApp\\BE\\EnglishApp\\EnglishApp\\EnglishApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.0\\microsoft.aspnetcore.authentication.jwtbearer.5.0.0.nupkg.sha512",

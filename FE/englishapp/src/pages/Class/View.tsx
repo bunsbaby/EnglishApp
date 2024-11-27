@@ -2,40 +2,40 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Modal, Row, Space, message } from 'antd';
 import DefaultAvatar from 'access/images/avatar.png';
 import axios from '../../common/baseAxios';
-import CourseDto from './models/CourseDto';
+import ClassDto from './models/ClassDto';
 import moment from 'moment';
-interface IAddCourseProps {
+interface IAddClassProps {
     open: boolean,
     closeForm: Function,
     id: Number
 }
-const ViewModal: React.FC<IAddCourseProps> = (props: IAddCourseProps) => {
+const ViewModal: React.FC<IAddClassProps> = (props: IAddClassProps) => {
     const { open, closeForm, id } = props;
-    const [curentCourse, setCurentCourse] = useState<CourseDto>();
+    const [curentClass, setCurentClass] = useState<ClassDto>();
 
     useEffect(() => {
-        getCourseById();
+        getClassById();
     }, [])
-    const getCourseById = () => {
-        axios.get(`Courses/${id}`).then((res) => {
-            setCurentCourse(res.data.data);
+    const getClassById = () => {
+        axios.get(`Classes/${id}`).then((res) => {
+            setCurentClass(res.data.data);
         })
     }
     const handleDelete = () => {
-        axios.delete(`Courses/${id}`).then((res) => {
+        axios.delete(`Classes/${id}`).then((res) => {
             if(res?.data?.status) {
-                message.success('Xóa khóa học thành công.')
+                message.success('Xóa lớp học thành công.')
                 closeForm(true);
             }
             else {
-                message.success('Xóa khóa học thất bại.')
+                message.success('Xóa lớp học thất bại.')
             }
         })
     }
     return (
         <>
             <Modal
-                title="CHI TIẾT KHÓA HỌC"
+                title="CHI TIẾT LỚP HỌC"
                 centered
                 open={open}
                 onOk={() => closeForm(false)}
@@ -47,40 +47,32 @@ const ViewModal: React.FC<IAddCourseProps> = (props: IAddCourseProps) => {
                     <Col span={24}>
                         <Row style={{ marginTop: '15px' }}>
                             <Col span={6}>Mã ID:</Col>
-                            <Col span={18}>{curentCourse?.id?.toString()}</Col>
+                            <Col span={18}>{curentClass?.id?.toString()}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
                             <Col span={6}>
-                                Tên khóa
+                                Tên lớp học
                             </Col>
-                            <Col span={18}>{curentCourse?.name}</Col>
+                            <Col span={18}>{curentClass?.name}</Col>
+                        </Row>
+                        <Row style={{ marginTop: '15px' }}>
+                            <Col span={6}>
+                                Mô tả
+                            </Col>
+                            <Col span={18}>{curentClass?.description}</Col>
+                        </Row>
+                        <Row style={{ marginTop: '15px' }}>
+                            <Col span={6}>Khóa học</Col>
+                            <Col span={18}>{curentClass?.courseName}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
                             <Col span={6}>Giảng viên:</Col>
-                            <Col span={18}>{curentCourse?.teacherName}</Col>
-                        </Row>
-                        <Row style={{ marginTop: '15px' }}>
-                            <Col span={6}>Lớp:</Col>
-                            <Col span={18}>
-                                {curentCourse?.className}
-                            </Col>
+                            <Col span={18}>{curentClass?.teacherName}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
                             <Col span={6}>Buổi Học:</Col>
                             <Col span={18}>
-                                {curentCourse?.lessonName}
-                            </Col>
-                        </Row>
-                        <Row style={{ marginTop: '15px' }}>
-                            <Col span={6}>Thời Gian Bắt Đầu:</Col>
-                            <Col span={18}>
-                                {moment(curentCourse?.startDated).format("DD-MM-YYYY")}
-                            </Col>
-                        </Row>
-                        <Row style={{ marginTop: '15px' }}>
-                            <Col span={6}>Gói Khóa Học:</Col>
-                            <Col span={18}>
-                                {curentCourse?.packageType + ` Tháng`}
+                                {curentClass?.lessonName}
                             </Col>
                         </Row>
                     </Col>

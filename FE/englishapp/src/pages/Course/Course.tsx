@@ -21,19 +21,14 @@ const Course = () => {
             key: 'name'
         },
         {
-            title: 'Giảng Viên',
-            dataIndex: 'teacherName',
-            key: 'teacherName'
+            title: 'Thời Gian Bắt Đầu',
+            dataIndex: 'startDated',
+            key: 'startDated'
         },
         {
-            title: 'Lớp',
-            dataIndex: 'className',
-            key: 'className'
-        },
-        {
-            title: 'Buổi Học',
-            dataIndex: 'lessonName',
-            key: 'lessonName'
+            title: 'Gói Khóa Học',
+            dataIndex: 'packageType',
+            key: 'packageType'
         },
         {
             title: ``,
@@ -84,7 +79,7 @@ const Course = () => {
             </Row>
             <Row style={{ marginTop: '20px' }}>
                 <Col span={12}>
-                    <Input onChange={handleOnChange} placeholder="Tìm kiếm theo tên hoặc email" prefix={<SearchOutlined />} />
+                    <Input onChange={handleOnChange} placeholder="Tìm kiếm theo tên" prefix={<SearchOutlined />} />
                 </Col>
                 <Col span={12} style={{ textAlign: 'right' }}>
                     <Button onClick={() => setOpen(true)}>Thêm Mới</Button>

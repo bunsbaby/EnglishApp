@@ -8,9 +8,11 @@ namespace EnglishApp.Models.Classes
         public string Name { get; set; }
         public int Id { get; set; }
         public string Description { get; set; }
+        public int CourseId { get; set; }
+        public string CourseName { get; set; }
+        public int TeacherId { get; set; }
         public string TeacherName { get; set; }
         public string LessonName { get; set; }
         public int LessonId { get; set; }
-        public int TeacherId { get; set; }
     }
 }
