@@ -28,7 +28,7 @@ const Register = () => {
             <Col span={10} className={'content-login'}>
                 <div>
                     <img className={'logo'} src={Logo} alt="" />
-                    <h2 className='title-login'>ĐĂNG KÍ</h2>
+                    <h2 className='title-login'>ĐĂNG KÝ</h2>
                     <Form
                         name="basic"
                         layout={'vertical'}
@@ -86,7 +86,7 @@ const Register = () => {
 
                         <Form.Item wrapperCol={{ span: 24 }}>
                             <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-                                ĐĂNG KÍ
+                                ĐĂNG KÝ
                             </Button>
                         </Form.Item>
                         <Form.Item wrapperCol={{ span: 24 }} style={{ fontWeight: 400, fontSize: '16px', display: 'flex', justifyContent: 'center' }}>

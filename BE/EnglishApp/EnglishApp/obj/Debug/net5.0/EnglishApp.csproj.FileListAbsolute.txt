@@ -161,9 +161,9 @@ C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\staticweba
 C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\staticwebassets\EnglishApp.StaticWebAssets.xml
 C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\scopedcss\bundle\EnglishApp.styles.css
 C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\EnglishApp.RazorTargetAssemblyInfo.cache
-C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\EnglishApp.csproj.Up2Date
 C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\EnglishApp.dll
-C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\refint\EnglishApp.dll
 C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\EnglishApp.pdb
 C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\EnglishApp.genruntimeconfig.cache
 C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\ref\EnglishApp.dll
+C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\EnglishApp.csproj.Up2Date
+C:\BunsBaby\LVTN\EnglishApp\BE\EnglishApp\EnglishApp\obj\Debug\net5.0\refint\EnglishApp.dll

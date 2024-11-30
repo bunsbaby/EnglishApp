@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace EnglishApp.Services.Class
 {
@@ -61,6 +62,9 @@ namespace EnglishApp.Services.Class
                         => cl_t_l.cl.CourseId, c => c.Id, (cl_t_l, c)
                             => new { cl = cl_t_l.cl, t = cl_t_l.t, cl_t_l.l, c }
                  );
+            var studentCount = englishContext.Students.Where(
+                    m => m.ClassId == id
+                ).Count();
             iQueryable = iQueryable.Where(m => m.cl.Id == id);
             var data = await iQueryable.Select(m => new ClassDto
             {
@@ -72,7 +76,8 @@ namespace EnglishApp.Services.Class
                 TeacherId = m.t.Id,
                 TeacherName = m.t.Name,
                 LessonName = m.l.Name,
-                LessonId = m.l.Id
+                LessonId = m.l.Id,
+                StudentCount = studentCount
             }).FirstOrDefaultAsync();
 
             return data;
@@ -80,7 +85,16 @@ namespace EnglishApp.Services.Class
 
         public async Task<List<ClassDto>> GetListClass(string search = "")
         {
-            var iQueryable =  englishContext.Classes.Join
+            var class_s = englishContext.Classes.Join(
+                    englishContext.Students, cl
+                        => cl.Id, s => s.ClassId, (cl, s)
+                            => new { cl, s }).GroupBy(n => n.cl.Id).Select(m => new
+                            {
+                                StudentCount = m.Count(),
+                                Id = m.Key
+                            }
+            ).OrderBy(x => x.Id);
+            var iQueryable = englishContext.Classes.Join
                 (
                     englishContext.Teachers, cl 
                         => cl.TeacherId, t => t.Id, (cl, t) 
@@ -96,11 +110,24 @@ namespace EnglishApp.Services.Class
                     englishContext.Courses, cl_t_l
                         => cl_t_l.cl.CourseId, c => c.Id, (cl_t_l, c)
                             => new { cl = cl_t_l.cl, t = cl_t_l.t, cl_t_l.l, c }
-                 );
-            if(!string.IsNullOrWhiteSpace(search))
+                //).Join(
+                //    englishContext.Students, cl_s
+                //        => cl_s.cl.Id, s => s.ClassId, (cl_s, s)
+                //            => new { cl = cl_s.cl, t = cl_s.t, l = cl_s.l, c = cl_s.c, s }
+                ).Join(
+                    class_s, i
+                    => i.cl.Id, s => s.Id, (i, s)
+                    => new { cl = i.cl, t = i.t, l = i.l, c = i.c, s }
+                );
+            if (!string.IsNullOrWhiteSpace(search))
             {
-                iQueryable = iQueryable.Where(m => EF.Functions.Like(m.c.Name.ToLower(), $"%{search.ToLower()}%"));
+                iQueryable = iQueryable.Where(m => EF.Functions.Like(m.cl.Name.ToLower(), $"%{search.ToLower()}%"));
             }
+            //iQueryable = (
+            //                from query in iQueryable
+            //                join student in englishContext.Students
+            //                    on query.cl.Id equals student.Id into queryJoined
+            //             )
             iQueryable = iQueryable.Where(m => !m.cl.DeletedAt.HasValue);
             var data = await iQueryable.Select(m => new ClassDto
             {
@@ -112,7 +139,8 @@ namespace EnglishApp.Services.Class
                 TeacherId = m.t.Id,
                 TeacherName = m.t.Name,
                 LessonName = m.l.Name,
-                LessonId = m.l.Id
+                LessonId = m.l.Id,
+                StudentCount = m.s.StudentCount
             }).ToListAsync();
 
             return data;

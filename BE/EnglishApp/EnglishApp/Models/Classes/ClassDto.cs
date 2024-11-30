@@ -14,5 +14,6 @@ namespace EnglishApp.Models.Classes
         public string TeacherName { get; set; }
         public string LessonName { get; set; }
         public int LessonId { get; set; }
+        public int StudentCount { get; set; }
     }
 }

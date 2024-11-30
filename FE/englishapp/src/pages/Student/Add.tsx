@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Form, Input, Select, message } from 'antd';
 import axios from '../../common/baseAxios';
-import CourseDto from 'pages/Course/models/CourseDto';
+import ClassDto from 'pages/Class/models/ClassDto';
 import StudentInsertDto from './models/StudentInsertDto';
 interface IAddStudentProps {
     open: boolean,
@@ -23,21 +23,21 @@ const AddModal: React.FC<IAddStudentProps> = (props: IAddStudentProps) => {
         })
     }
     useEffect(() => {
-        getCourse();
+        getClass();
     }, []);
-    const getCourse = () => {
-        axios.get(`Courses`).then((res) => {
+    const getClass = () => {
+        axios.get(`Classes`).then((res) => {
             if (res.data.status) {
-                let courses: Array<CourseDto> = res.data.data;
-                let courseOptions: Array<IClassOptions> = new Array<IClassOptions>();
-                courses.forEach((m) => {
+                let classes: Array<ClassDto> = res.data.data;
+                let classOptions: Array<IClassOptions> = new Array<IClassOptions>();
+                classes.forEach((m) => {
                     let option: IClassOptions =  {
                         value: m.id,
                         label: m.name
                     };
-                    courseOptions.push(option);
+                    classOptions.push(option);
                 })
-                setClassOptions(courseOptions);
+                setClassOptions(classOptions);
             }
         })
     }

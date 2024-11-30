@@ -7,6 +7,7 @@ interface ClassDto {
     teacherName: string,
     lessonName: string // Buổi học
     teacherId: number,
-    lessonId: number
+    lessonId: number,
+    studentCount: number
 }
 export default ClassDto;

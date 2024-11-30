@@ -20,6 +20,7 @@ namespace EnglishApp.Entity
         public string Phone { get; set; }
         [Required]
         public int GenderId { get; set; }
+        public int? AccountId { get; set; }
         public string Address { get; set; }
         public string Education { get; set; }
         public DateTime? DeletedAt { get; set; }

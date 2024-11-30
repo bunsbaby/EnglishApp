@@ -13,6 +13,8 @@ namespace EnglishApp.Services.Teacher
     {
         public async Task<bool> CreateTeacher(TeacherInsertDto input)
         {
+            var anyEmail = await englishContext.Teachers.AnyAsync(m => m.Email == input.Email);
+            if (anyEmail) return false;
             var entity = new TeacherEntity()
             {
                 Address = input.Address,
@@ -30,6 +32,8 @@ namespace EnglishApp.Services.Teacher
 
         public async Task<bool> UpdateTeacher(TeacherInsertDto input, int id)
         {
+            var anyEmail = await englishContext.Teachers.AnyAsync(m => m.Email == input.Email);
+            if (anyEmail) return false;
             var entity = await englishContext.Teachers.FirstOrDefaultAsync(x => x.Id == id);
             if(entity != null)
             {

@@ -31,6 +31,11 @@ const Class = () => {
             key: 'teacherName'
         },
         {
+            title: 'Sĩ số',
+            dataIndex: 'studentCount',
+            key: 'studentCount'
+        },
+        {
             title: 'Buổi Học',
             dataIndex: 'lessonName',
             key: 'lessonName'

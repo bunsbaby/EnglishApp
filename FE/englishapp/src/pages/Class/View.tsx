@@ -70,6 +70,10 @@ const ViewModal: React.FC<IAddClassProps> = (props: IAddClassProps) => {
                             <Col span={18}>{curentClass?.teacherName}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
+                            <Col span={6}>Sĩ số:</Col>
+                            <Col span={18}>{curentClass?.studentCount}</Col>
+                        </Row>
+                        <Row style={{ marginTop: '15px' }}>
                             <Col span={6}>Buổi Học:</Col>
                             <Col span={18}>
                                 {curentClass?.lessonName}

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,9 @@ namespace EnglishApp.Services.Account
             if (anyEmail) return false;
             var anyUserName = await englishContext.Accounts.AnyAsync(m => m.UserName == input.UserName);
             if (anyUserName) return false;
+            var anyStudentEmail = await englishContext.Students.AnyAsync(m => m.Email == input.Email);
+            var anyTeacherEmail = await englishContext.Teachers.AnyAsync(m => m.Email == input.Email);
+            if ((input.Role == 1 && !anyStudentEmail) || (input.Role == 2 && !anyTeacherEmail)) return false;
             var entity = new AccountEntity()
             {
                 Email = input.Email,
@@ -52,6 +56,22 @@ namespace EnglishApp.Services.Account
             };
             englishContext.Accounts.Add(entity);
             var flag = await englishContext.SaveChangesAsync();
+            var accountId = englishContext.Accounts.SingleOrDefault(m => m.Email == input.Email).Id;
+            using (var db = new EnglishContext())
+            {
+                if (input.Role == 1)
+                {
+                    var studentEntity = db.Students.Where(m => m.Email == input.Email).First();
+                    studentEntity.AccountId = accountId;
+                    db.SaveChanges();
+                }
+                else if (input.Role == 2)
+                {
+                    var teacherEntity = db.Teachers.Where(m => m.Email == input.Email).First();
+                    teacherEntity.AccountId = accountId;
+                    db.SaveChanges();
+                }
+            }
             return flag > -1;
         }
 

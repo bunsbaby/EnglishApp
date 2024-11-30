@@ -16,13 +16,13 @@ namespace EnglishApp.Entity
         public string Name { get; set; }
         [Required]
         public string Email { get; set; }
-        public string AccountId { get; set; }
+        public int? AccountId { get; set; }
         [Required]
         public string Phone { get; set; }
         [Required]
         public int GenderId { get; set; }
         public string Address { get; set; }
-        public int ClassId { get; set; } // Course
+        public int? ClassId { get; set; }
         public DateTime? DeletedAt { get; set; }
     }
 }

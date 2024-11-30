@@ -64,7 +64,7 @@ const Login = () => {
                             </Button>
                         </Form.Item>
                         <Form.Item wrapperCol={{ span: 24 }} style={{ fontWeight: 400, fontSize: '16px', display: 'flex', justifyContent: 'center'}}>
-                            <span style={{ color: '#7D7D7D' }}>Bạn chưa có tài khoản ? </span> <span onClick={() => navigate("/register")} style={{ color: '#000000', cursor: 'pointer' }}>Đăng Kí</span>
+                            <span style={{ color: '#7D7D7D' }}>Bạn chưa có tài khoản ? </span> <span onClick={() => navigate("/register")} style={{ color: '#000000', cursor: 'pointer' }}>Đăng Ký</span>
                         </Form.Item>
                     </Form>
                 </div>

@@ -3,9 +3,11 @@ using EnglishApp.Models.Dashboards;
 using EnglishApp.Models.Students;
 using EnglishApp.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace EnglishApp.Services.Student
@@ -14,6 +16,8 @@ namespace EnglishApp.Services.Student
     {
         public async Task<bool> CreateStudent(StudentInsertDto input)
         {
+            var anyEmail = await englishContext.Students.AnyAsync(m => m.Email == input.Email);
+            if (anyEmail) return false;
             var entity = new StudentEntity()
             {
                 Address = input.Address,
@@ -47,41 +51,54 @@ namespace EnglishApp.Services.Student
 
         public async Task<List<StudentDto>> GetListStudent(string search = "")
         {
-            var iQueryable = englishContext.Students.Join(englishContext.Classes, st => st.ClassId, c => c.Id, (st, c) => new { st, c });
-            if(!string.IsNullOrWhiteSpace(search))
+            //var iQueryable = englishContext.Students.Join(englishContext.Classes, st => st.ClassId, c => c.Id, (st, c) => new { st, c });
+            var iQueryable = (from student in englishContext.Students
+                         where !student.DeletedAt.HasValue
+                         join join_class in englishContext.Classes
+                            on student.ClassId equals join_class.Id into jcl
+                        from cl in jcl.DefaultIfEmpty()
+                        where !cl.DeletedAt.HasValue
+                        select new StudentDto
+                         {
+                             Address = student.Address,
+                             ClassId = student.ClassId,
+                             Email = student.Email,
+                             GenderId = student.GenderId,
+                             Name = student.Name,
+                             Phone = student.Phone,
+                             Id = student.Id,
+                             ClassName = cl.Name
+                         });
+            if (!string.IsNullOrWhiteSpace(search))
             {
-                iQueryable = iQueryable.Where(m => EF.Functions.Like(m.st.Name.ToLower(), $"%{search.ToLower()}%") || EF.Functions.Like(m.st.Email.ToLower(), $"%{search.ToLower()}%"));
+                iQueryable = iQueryable.Where(m => EF.Functions.Like(m.Name.ToLower(), $"%{search.ToLower()}%") || EF.Functions.Like(m.Email.ToLower(), $"%{search.ToLower()}%"));
             }
-            iQueryable = iQueryable.Where(m => !m.st.DeletedAt.HasValue);
-            var data = await iQueryable.Select(m => new StudentDto
-            {
-                Address = m.st.Address,
-                ClassId = m.st.ClassId,
-                Email = m.st.Email,
-                GenderId = m.st.GenderId,
-                Name = m.st.Name,
-                Phone = m.st.Phone,
-                Id = m.st.Id,
-                ClassName = m.c.Name
-            }).ToListAsync();
+            //iQueryable = iQueryable.Where(m => !m.S_DeleteAt.HasValue && !m.C_DeleteAt.HasValue);
+            var data = await iQueryable.ToListAsync();
             return data;
         }
 
         public async Task<StudentDto> GetStudentById(int Id)
         {
-            var iQueryable = englishContext.Students.Join(englishContext.Classes, st => st.ClassId, c => c.Id, (st, c) => new { st, c });
-            iQueryable = iQueryable.Where(m => m.st.Id == Id);
-            var data = await iQueryable.Select(m => new StudentDto
-            {
-                Address = m.st.Address,
-                ClassId = m.st.ClassId,
-                Email = m.st.Email,
-                GenderId = m.st.GenderId,
-                Name = m.st.Name,
-                Phone = m.st.Phone,
-                Id = m.st.Id,
-                ClassName = m.c.Name
-            }).FirstOrDefaultAsync();
+            var iQueryable = (from student in englishContext.Students
+                            where !student.DeletedAt.HasValue
+                                && student.Id == Id
+                            join join_class in englishContext.Classes
+                                on student.ClassId equals join_class.Id into jcl
+                            from cl in jcl.DefaultIfEmpty()
+                            where !cl.DeletedAt.HasValue
+                            select new StudentDto
+                            {
+                                Address = student.Address,
+                                ClassId = student.ClassId,
+                                Email = student.Email,
+                                GenderId = student.GenderId,
+                                Name = student.Name,
+                                Phone = student.Phone,
+                                Id = student.Id,
+                                ClassName = cl.Name
+                            });
+            var data = await iQueryable.FirstAsync();
             return data;
         }
 
