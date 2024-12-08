@@ -19,6 +19,11 @@ const Document = () => {
             key: 'name',
         },
         {
+            title: 'Lớp Học',
+            dataIndex: 'className',
+            key: 'className'
+        },
+        {
             title: 'Kích Cỡ',
             dataIndex: 'documentSize',
             key: 'documentSize',

@@ -7,5 +7,6 @@
         public string Description { get; set; }
         public string FileName { get; set; }
         public string DisplayName { get; set; }
+        public int ClassId { get; set; }
     }
 }

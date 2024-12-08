@@ -44,24 +44,28 @@ const ViewModal: React.FC<IAddDocumentProps> = (props: IAddDocumentProps) => {
                 <Row>
                     <Col span={16}>
                         <Row style={{marginTop: '15px'}}>
-                            <Col span={4}>Mã ID:</Col>
+                            <Col span={4}>Mã ID</Col>
                             <Col span={20}>{curentDocument?.id}</Col>
                         </Row>
                         <Row style={{marginTop: '15px'}}>
-                            <Col span={4}>Tên Tài Liệu:</Col>
+                            <Col span={4}>Tên Tài Liệu</Col>
                             <Col span={20}>{curentDocument?.name}</Col>
                         </Row>
                         <Row style={{marginTop: '15px'}}>
-                            <Col span={4}>Ngày Tải Lên:</Col>
+                            <Col span={4}>Mô Tả</Col>
+                            <Col span={20}>{curentDocument?.description}</Col>
+                        </Row>
+                        <Row style={{marginTop: '15px'}}>
+                            <Col span={4}>Ngày Tải Lên</Col>
                             <Col span={20}>{moment(curentDocument?.createdAt).format("DD/MM/YYYY hh:mm")}</Col>
                         </Row>
                         <Row style={{marginTop: '15px'}}>
-                            <Col span={4}>Kích Thước:</Col>
+                            <Col span={4}>Kích Thước</Col>
                             <Col span={20}>{ curentDocument === null || curentDocument === undefined ? '0MB' : `${(curentDocument.documentSize / (1024 ** 2)).toFixed(2)}MB`}</Col>
                         </Row>
                         <Row style={{marginTop: '15px'}}>
-                            <Col span={4}>Mô Tả:</Col>
-                            <Col span={20}>{curentDocument?.description}</Col>
+                            <Col span={4}>Lớp học</Col>
+                            <Col span={20}>{curentDocument?.className}</Col>
                         </Row>
                     </Col>
                 </Row>

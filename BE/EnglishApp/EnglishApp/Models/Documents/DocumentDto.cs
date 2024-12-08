@@ -11,5 +11,7 @@ namespace EnglishApp.Models.Documents
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
         public string DisplayName { get; set; }
+        public int ClassId { get; set; }
+        public string ClassName { get; set; }
     }
 }

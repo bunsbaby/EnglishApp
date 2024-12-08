@@ -21,11 +21,6 @@ const Student = () => {
             key: 'name',
         },
         {
-            title: 'Khóa Học',
-            dataIndex: 'courseName',
-            key: 'courseName'
-        },
-        {
             title: 'Lớp Học',
             dataIndex: 'className',
             key: 'className'

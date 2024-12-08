@@ -21,6 +21,7 @@ namespace EnglishApp.Services.Document
                 FileName = input.FileName,
                 Name = input.Name,
                 DisplayName = input.DisplayName,
+                ClassId = input.ClassId
             };
             englishContext.Documents.Add(entity);
             var flag = await englishContext.SaveChangesAsync();
@@ -29,36 +30,45 @@ namespace EnglishApp.Services.Document
 
         public async Task<DocumentDto> GetDocumentById(int Id)
         {
-            var iQueryable = englishContext.Documents.AsQueryable();
-            iQueryable = iQueryable.Where(m => m.Id == Id);
+            var iQueryable = englishContext.Documents.Join(
+                    englishContext.Classes, d => d.ClassId, cl => cl.Id, (d, cl) => new { d, cl }
+                ).AsQueryable();
+            iQueryable = iQueryable.Where(m => m.d.Id == Id);
             var data = await iQueryable.Select(m => new DocumentDto
             {
-                Description = m.Description,
-                DocumentSize = m.DocumentSize,
-                FileName = m.FileName,
-                Id = m.Id,
-                Name = m.Name,
-                DisplayName = m.DisplayName,
-                CreatedAt = m.CreatedAt
+                Description = m.d.Description,
+                DocumentSize = m.d.DocumentSize,
+                FileName = m.d.FileName,
+                Id = m.d.Id,
+                Name = m.d.Name,
+                DisplayName = m.d.DisplayName,
+                ClassId = m.d.ClassId,
+                ClassName = m.cl.Name,
+                CreatedAt = m.d.CreatedAt
             }).FirstOrDefaultAsync();
             return data;
         }
 
         public async Task<List<DocumentDto>> GetListDocument(string search = "")
         {
-            var iQueryable = englishContext.Documents.Where(m => !m.DeletedAt.HasValue).AsQueryable();
+            var iQueryable = englishContext.Documents
+                .Join(
+                    englishContext.Classes, d => d.ClassId, cl => cl.Id, (d, cl) => new { d, cl }
+                ).Where(m => !m.d.DeletedAt.HasValue).AsQueryable();
             if(!string.IsNullOrWhiteSpace(search))
             {
-                iQueryable = iQueryable.Where(m => EF.Functions.Like(m.Name.ToLower(), $"%{search.ToLower()}%"));
+                iQueryable = iQueryable.Where(m => EF.Functions.Like(m.d.Name.ToLower(), $"%{search.ToLower()}%"));
             }
             var data = await iQueryable.Select(m => new DocumentDto
             {
-                Description = m.Description,
-                DocumentSize = m.DocumentSize,
-                FileName = m.FileName,
-                Id = m.Id,
-                Name = m.Name,
-                CreatedAt = m.CreatedAt
+                Description = m.d.Description,
+                DocumentSize = m.d.DocumentSize,
+                FileName = m.d.FileName,
+                Id = m.d.Id,
+                ClassId = m.d.ClassId,
+                ClassName = m.cl.Name,
+                Name = m.d.Name,
+                CreatedAt = m.d.CreatedAt
             }).ToListAsync();
             return data;
         }

@@ -68,10 +68,9 @@ const ViewModal: React.FC<IAddTeacherProps> = (props: IAddTeacherProps) => {
                                 </Space>
                             </Col>
                         </Row>
-                        <Row>
-                            <Col span={24} style={{ fontSize: '16px', fontWeight: 400 }}>
-                                Mô tả trình độ, học vấn {curentTeacher?.education}
-                            </Col>
+                        <Row style={{ marginTop: '15px' }}>
+                            <Col span={4}>Trình độ</Col>
+                            <Col span={25}>{curentTeacher?.education}</Col>
                         </Row>
                         <Row style={{ marginTop: '15px' }}>
                             <Col span={4}>Địa chỉ</Col>

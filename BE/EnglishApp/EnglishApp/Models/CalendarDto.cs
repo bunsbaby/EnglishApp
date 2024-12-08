@@ -10,6 +10,9 @@ namespace EnglishApp.Models
         public string Content { get; set; }
         public int Id { get; set; }
         public int PackageType { get; set; }
+        public int LessonId { get; set; }
+        public int From { get; set; }
+        public int To { get; set; }
         public DateTime StartDated { get; set; }
     }
 

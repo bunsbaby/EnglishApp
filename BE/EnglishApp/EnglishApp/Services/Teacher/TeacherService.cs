@@ -32,7 +32,7 @@ namespace EnglishApp.Services.Teacher
 
         public async Task<bool> UpdateTeacher(TeacherInsertDto input, int id)
         {
-            var anyEmail = await englishContext.Teachers.AnyAsync(m => m.Email == input.Email);
+            var anyEmail = await englishContext.Teachers.AnyAsync(m => m.Email == input.Email && m.Id != id);
             if (anyEmail) return false;
             var entity = await englishContext.Teachers.FirstOrDefaultAsync(x => x.Id == id);
             if(entity != null)

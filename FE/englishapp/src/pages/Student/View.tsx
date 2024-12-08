@@ -75,10 +75,6 @@ const ViewModal: React.FC<IAddStudentProps> = (props: IAddStudentProps) => {
                             <Col span={4}>Lớp</Col>
                             <Col span={20}>{curentStudent?.className}</Col>
                         </Row>
-                        <Row style={{marginTop: '15px'}}>
-                            <Col span={4}>Khóa học</Col>
-                            <Col span={20}>{curentStudent?.courseName}</Col>
-                        </Row>
                     </Col>
                 </Row>
                 <Row style={{ marginTop: '15px', textAlign: 'right' }}>

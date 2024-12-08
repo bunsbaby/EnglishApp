@@ -112,38 +112,28 @@ const Home = () => {
                     </Col>
                 </Row>
             </Col>
-            <Col span={2}></Col>
-            <Col span={16}>
+            <Col span={18}>
+                <Row style={{ marginLeft: '12px' }}>
+                    <Col span={24}>
+                        DOANH THU
+                    </Col>
+                </Row>
                 <Row>
                     <Col span={24}>
-                        THỐNG KÊ
-                    </Col>
-                </Row>
-                <Row style={{ marginTop: '20px' }}>
-                    <Col span={24}>
-                        <Line {...config} />
+                        <Chart
+                            chartType="ColumnChart"
+                            data={barCharts}
+                            width="100%"
+                            height="432px"
+                            legendToggle
+                        />
                     </Col>
                 </Row>
 
             </Col>
         </Row>
 
-        <Row style={{ marginTop: '20px' }}>
-            <Col span={24}>
-                DOANH THU
-            </Col>
-        </Row>
-        <Row style={{ marginTop: '20px' }}>
-            <Col span={24}>
-                <Chart
-                    chartType="ColumnChart"
-                    data={barCharts}
-                    width="100%"
-                    height="400px"
-                    legendToggle
-                />
-            </Col>
-        </Row>
+        
     </div>
 }
 export default Home;

@@ -34,6 +34,8 @@ namespace EnglishApp.Services.Student
         }
         public async Task<bool> UpdateStudent(StudentInsertDto input, int id)
         {
+            var anyEmail = await englishContext.Students.AnyAsync(m => m.Email == input.Email && m.Id != id);
+            if (anyEmail) return false;
             var entity = await englishContext.Students.FirstOrDefaultAsync(m => m.Id == id);
             if(entity != null)
             {

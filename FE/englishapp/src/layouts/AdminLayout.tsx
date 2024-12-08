@@ -48,7 +48,7 @@ const AdminLayout = () => {
                 <Content style={{ margin: '16px 16px' }}>
                     <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}><Outlet /></div>
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
+                <Footer style={{ textAlign: 'center' }}>English App© Created by Nguyen Tuan Minh</Footer>
             </Layout>
         </Layout>
     );

@@ -41,7 +41,7 @@ const CalendarCom = () => {
     getListCourses();
   }, []);
   const getListCourses = (request: any = {}) => {
-    axios.post(`Courses/GetCalendars`, request).then((res) => {
+    axios.post(`Classes/GetCalendars`, request).then((res) => {
       if (res?.data?.status) {
         setCurrentCalendar(res?.data?.data);
       }

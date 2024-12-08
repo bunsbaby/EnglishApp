@@ -107,22 +107,22 @@ namespace EnglishApp.Controllers
             return new ObjectResult(response);
         }
 
-        //[HttpPost("GetCalendars")]
-        //public async Task<IActionResult> GetCalendars([FromBody] CalendarRequest request)
-        //{
-        //    var response = new ResponseDto<LessonDto>();
-        //    try
-        //    {
-        //        var results = await _classService.GetCalendars(request);
-        //        response.Data = results;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        response.Status = false;
-        //        response.Message = $"Lỗi hệ thống - {ex.Message}!";
-        //    }
-        //    return new ObjectResult(response);
-        //}
+        [HttpPost("GetCalendars")]
+        public async Task<IActionResult> GetCalendars([FromBody] CalendarRequest request)
+        {
+            var response = new ResponseDto<LessonDto>();
+            try
+            {
+                var results = await _classService.GetCalendars(request);
+                response.Data = results;
+            }
+            catch (Exception ex)
+            {
+                response.Status = false;
+                response.Message = $"Lỗi hệ thống - {ex.Message}!";
+            }
+            return new ObjectResult(response);
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

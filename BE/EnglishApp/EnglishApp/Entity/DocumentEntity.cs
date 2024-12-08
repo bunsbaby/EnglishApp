@@ -19,6 +19,7 @@ namespace EnglishApp.Entity
         [Required]
         public string FileName { get; set; }
         public string DisplayName { get; set; }
+        public int ClassId { get; set; }
         public DateTime? DeletedAt { get; set; }
     }
 }

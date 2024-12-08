@@ -3,6 +3,8 @@ interface DocumentInsertDto {
     documentSize: any,
     description: string,
     fileName: string,
+    classId: number,
+    className: string,
     displayName: string,
 }
 export default DocumentInsertDto;

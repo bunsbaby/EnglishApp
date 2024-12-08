@@ -114,10 +114,10 @@ namespace EnglishApp.Services.Class
                 //    englishContext.Students, cl_s
                 //        => cl_s.cl.Id, s => s.ClassId, (cl_s, s)
                 //            => new { cl = cl_s.cl, t = cl_s.t, l = cl_s.l, c = cl_s.c, s }
-                ).Join(
-                    class_s, i
-                    => i.cl.Id, s => s.Id, (i, s)
-                    => new { cl = i.cl, t = i.t, l = i.l, c = i.c, s }
+                //).Join(
+                //    class_s, i
+                //    => i.cl.Id, s => s.Id, (i, s)
+                //    => new { cl = i.cl, t = i.t, l = i.l, c = i.c, s }
                 );
             if (!string.IsNullOrWhiteSpace(search))
             {
@@ -140,7 +140,7 @@ namespace EnglishApp.Services.Class
                 TeacherName = m.t.Name,
                 LessonName = m.l.Name,
                 LessonId = m.l.Id,
-                StudentCount = m.s.StudentCount
+                StudentCount = 0
             }).ToListAsync();
 
             return data;
@@ -157,72 +157,74 @@ namespace EnglishApp.Services.Class
             return results;
         }
 
-        //public async Task<List<CalendarDto>> GetCalendars(CalendarRequest request)
-        //{
-        //    var iQueryable = englishContext.Classes.Where(m => !m.DeletedAt.HasValue).AsQueryable();
-        //    int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-        //    var firstDayOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        public async Task<List<CalendarDto>> GetCalendars(CalendarRequest request)
+        {
+            var iQueryable = englishContext.Classes.Join(
+                                englishContext.Courses, cl => cl.CourseId, c => c.Id, (cl, c) => new {cl, c}
+                            ).Where(m => !m.cl.DeletedAt.HasValue).AsQueryable();
+            int days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
+            var firstDayOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
 
-        //    if (request.ChooseDate.HasValue)
-        //    {
-        //        days = DateTime.DaysInMonth(request.ChooseDate.Value.Year, request.ChooseDate.Value.Month);
-        //        firstDayOfMonth = new DateTime(request.ChooseDate.Value.Year, request.ChooseDate.Value.Month, 1);
-        //        iQueryable = iQueryable.Where(m => m.StartDated.AddMonths((int)m.PackageType).Date >= request.ChooseDate.Value.Date);
-        //    }
-        //    else
-        //    {
-        //        iQueryable = iQueryable.Where(m => m.StartDated.AddMonths((int)m.PackageType).Date >= DateTime.Now.Date);
-        //    }
-        //    var class = await iQueryable.Select(m => new CalendarDto
-        //        {
-        //            StartDated = m.StartDated.Date,
-        //            Content = $"{m.ClassName}({m.Lesson.Time})",
-        //            Id = m.Id,
-        //            LessonId = m.LessonId,
-        //            From = m.Lesson.From,
-        //            To = m.Lesson.To,
-        //            PackageType = (int) m.PackageType
-        //        }).ToListAsync();
-        //    var results = new List<CalendarDto>();
-        //        if(class != null && class.Any())
-        //        {
-        //            foreach(var class in class)
-        //            {
-        //                for (var i = 0; i<days; i++)
-        //                {
-        //                    if(firstDayOfMonth.AddDays(i).Date >= class.StartDated && firstDayOfMonth.AddDays(i).Date <= class.StartDated.AddMonths(class.PackageType))
-        //                    {
-        //                        var dayOfWeek = ((int)firstDayOfMonth.AddDays(i).DayOfWeek == 0) ? 7 : (int)firstDayOfMonth.AddDays(i).DayOfWeek;
-        //                        /*** Case T2-T7 */
-        //                        if (class.To == 7 && dayOfWeek <= 6)
-        //                        {
-        //                            results.Add(new CalendarDto
-        //                            {
-        //                                Day = (i + 1),
-        //                                Content = class.Content,
-        //                                Id = class.Id,
-        //                                Month = request.ChooseDate.HasValue? request.ChooseDate.Value.Month : DateTime.Now.Month,
-        //                                Year = request.ChooseDate.HasValue ? request.ChooseDate.Value.Year : DateTime.Now.Year
-        //                            });
-        //                        }
-        //                        else if (class.To == 8 && dayOfWeek <= 8)
-        //                        {
-        //                            results.Add(new CalendarDto
-        //                            {
-        //                                Day = (i + 1),
-        //                                Content = class.Content,
-        //                                Id = class.Id,
-        //                                Month = request.ChooseDate.HasValue ? request.ChooseDate.Value.Month : DateTime.Now.Month,
-        //                                Year = request.ChooseDate.HasValue ? request.ChooseDate.Value.Year : DateTime.Now.Year
-        //                            });
-        //                        }
-        //                    }
+            if (request.ChooseDate.HasValue)
+            {
+                days = DateTime.DaysInMonth(request.ChooseDate.Value.Year, request.ChooseDate.Value.Month);
+                firstDayOfMonth = new DateTime(request.ChooseDate.Value.Year, request.ChooseDate.Value.Month, 1);
+                iQueryable = iQueryable.Where(m => m.c.StartDated.AddMonths((int)m.c.PackageType).Date >= request.ChooseDate.Value.Date);
+            }
+            else
+            {
+                iQueryable = iQueryable.Where(m => m.c.StartDated.AddMonths((int)m.c.PackageType).Date >= DateTime.Now.Date);
+            }
+            var qclass = await iQueryable.Select(m => new CalendarDto
+                {
+                    StartDated = m.c.StartDated.Date,
+                    Content = $"{m.cl.Name}({m.cl.Lesson.Time})",
+                    Id = m.cl.Id,
+                    LessonId = m.cl.LessonId,
+                    From = m.cl.Lesson.From,
+                    To = m.cl.Lesson.To,
+                    PackageType = (int) m.c.PackageType
+                }).ToListAsync();
+            var results = new List<CalendarDto>();
+            if(qclass != null && qclass.Any())
+            {
+                foreach(var iclass in qclass)
+                {
+                    for (var i = 0; i<days; i++)
+                    {
+                        if(firstDayOfMonth.AddDays(i).Date >= iclass.StartDated && firstDayOfMonth.AddDays(i).Date <= iclass.StartDated.AddMonths(iclass.PackageType))
+                        {
+                            var dayOfWeek = ((int)firstDayOfMonth.AddDays(i).DayOfWeek == 0) ? 7 : (int)firstDayOfMonth.AddDays(i).DayOfWeek;
+                            /*** Case T2-T7 */
+                            if (iclass.To == 7 && dayOfWeek <= 6)
+                            {
+                                results.Add(new CalendarDto
+                                {
+                                    Day = (i + 1),
+                                    Content = iclass.Content,
+                                    Id = iclass.Id,
+                                    Month = request.ChooseDate.HasValue? request.ChooseDate.Value.Month : DateTime.Now.Month,
+                                    Year = request.ChooseDate.HasValue ? request.ChooseDate.Value.Year : DateTime.Now.Year
+                                });
+                            }
+                            else if (iclass.To == 8 && dayOfWeek <= 8)
+                            {
+                                results.Add(new CalendarDto
+                                {
+                                    Day = (i + 1),
+                                    Content = iclass.Content,
+                                    Id = iclass.Id,
+                                    Month = request.ChooseDate.HasValue ? request.ChooseDate.Value.Month : DateTime.Now.Month,
+                                    Year = request.ChooseDate.HasValue ? request.ChooseDate.Value.Year : DateTime.Now.Year
+                                });
+                            }
+                        }
 
-        //                }
-        //            }
-        //        }
-        //        return results;
-        //    }
+                    }
+                }
+            }
+            return results;
+        }
         public async Task<bool> DeleteClass(int id)
         {
             var entity = await englishContext.Classes.FirstOrDefaultAsync(c => c.Id == id);
@@ -241,7 +243,7 @@ namespace EnglishApp.Services.Class
         Task<List<ClassDto>> GetListClass(string search = "");
         Task<ClassDto> GetClassById(int id);
         Task<List<LessonDto>> GetLessons();
-        //Task<List<CalendarDto>> GetCalendars(CalendarRequest request = null);
+        Task<List<CalendarDto>> GetCalendars(CalendarRequest request = null);
         Task<bool> DeleteClass(int id);
         Task<bool> UpdateClass(ClassInsertDto input, int id);
     }
