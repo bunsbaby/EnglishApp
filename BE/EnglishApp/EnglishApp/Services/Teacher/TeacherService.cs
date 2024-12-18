@@ -11,10 +11,10 @@ namespace EnglishApp.Services.Teacher
 {
     public class TeacherService : GenericRepository<TeacherEntity, EnglishContext>, ITeacherService
     {
-        public async Task<bool> CreateTeacher(TeacherInsertDto input)
+        public async Task<int> CreateTeacher(TeacherInsertDto input)
         {
             var anyEmail = await englishContext.Teachers.AnyAsync(m => m.Email == input.Email);
-            if (anyEmail) return false;
+            if (anyEmail) return 2;
             var entity = new TeacherEntity()
             {
                 Address = input.Address,
@@ -27,13 +27,13 @@ namespace EnglishApp.Services.Teacher
             };
             englishContext.Teachers.Add(entity);
             var flag = await englishContext.SaveChangesAsync();
-            return flag > -1;
+            return flag > -1 ? 1 : 0;
         }
 
-        public async Task<bool> UpdateTeacher(TeacherInsertDto input, int id)
+        public async Task<int> UpdateTeacher(TeacherInsertDto input, int id)
         {
             var anyEmail = await englishContext.Teachers.AnyAsync(m => m.Email == input.Email && m.Id != id);
-            if (anyEmail) return false;
+            if (anyEmail) return 2;
             var entity = await englishContext.Teachers.FirstOrDefaultAsync(x => x.Id == id);
             if(entity != null)
             {
@@ -44,9 +44,9 @@ namespace EnglishApp.Services.Teacher
                 entity.GenderId = input.GenderId;
                 entity.Email= input.Email;
                 entity.Education = input.Education;
-                return await englishContext.SaveChangesAsync() >= 0;
+                return await englishContext.SaveChangesAsync() >= 0 ? 1 : 0;
             }
-            return false;
+            return 0;
         }
 
         public async Task<TeacherDto> GetTeacherById(int Id)
@@ -108,11 +108,11 @@ namespace EnglishApp.Services.Teacher
 
     public interface ITeacherService 
     {
-        Task<bool> CreateTeacher(TeacherInsertDto input);
+        Task<int> CreateTeacher(TeacherInsertDto input);
         Task<List<TeacherDto>> GetTeacherList(string search = "");
         Task<TeacherDto> GetTeacherById(int Id);
         Task<int> GetTotalTeacher();
         Task<bool> DeleteTeacher(int id);
-        Task<bool> UpdateTeacher(TeacherInsertDto input, int id);
+        Task<int> UpdateTeacher(TeacherInsertDto input, int id);
     }
 }

@@ -15,7 +15,7 @@ const Register = () => {
                 message.success('Tạo tài khoản thành công.')
             }
             else {
-                message.error('Tạo tài khoản thất bại.')
+                message.error(result?.data?.message)
             }
         })
     };

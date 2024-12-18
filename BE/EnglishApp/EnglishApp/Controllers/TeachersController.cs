@@ -29,7 +29,21 @@ namespace EnglishApp.Controllers
             try
             {
                 var result = await _teacherService.CreateTeacher(input);
-                response.Status = result;
+                switch (result)
+                {
+                    case 0:
+                        response.Status = false;
+                        response.Message = "Tạo giảng viên thất bại";
+                        break;
+                    case 1:
+                        response.Status = true;
+                        response.Message = "Tạo giảng viên thành công";
+                        break;
+                    case 2:
+                        response.Status = false;
+                        response.Message = "Email đã được sử dụng";
+                        break;
+                }
             }
             catch (Exception ex)
             {
@@ -46,7 +60,21 @@ namespace EnglishApp.Controllers
             try
             {
                 var result = await _teacherService.UpdateTeacher(input, id);
-                response.Status = result;
+                switch (result)
+                {
+                    case 0:
+                        response.Status = false;
+                        response.Message = "Cập nhật thất bại";
+                        break;
+                    case 1:
+                        response.Status = true;
+                        response.Message = "Cập nhật thành công";
+                        break;
+                    case 2:
+                        response.Status = false;
+                        response.Message = "Email đã được sử dụng bởi giảng viên khác";
+                        break;
+                }
             }
             catch (Exception ex)
             {
@@ -97,6 +125,7 @@ namespace EnglishApp.Controllers
             {
                 var result = await _teacherService.DeleteTeacher(id);
                 response.Status = result;
+                response.Message = "Xóa giảng viên thành công";
             }
             catch(Exception ex)
             {

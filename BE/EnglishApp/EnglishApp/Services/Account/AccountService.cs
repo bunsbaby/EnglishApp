@@ -37,15 +37,15 @@ namespace EnglishApp.Services.Account
             return account;
         }
 
-        public async Task<bool> RegisterAccount(RegisterDto input)
+        public async Task<int> RegisterAccount(RegisterDto input)
         {
             var anyEmail = await englishContext.Accounts.AnyAsync(m => m.Email == input.Email);
-            if (anyEmail) return false;
+            if (anyEmail) return 2;
             var anyUserName = await englishContext.Accounts.AnyAsync(m => m.UserName == input.UserName);
-            if (anyUserName) return false;
+            if (anyUserName) return 4;
             var anyStudentEmail = await englishContext.Students.AnyAsync(m => m.Email == input.Email);
             var anyTeacherEmail = await englishContext.Teachers.AnyAsync(m => m.Email == input.Email);
-            if ((input.Role == 1 && !anyStudentEmail) || (input.Role == 2 && !anyTeacherEmail)) return false;
+            if ((input.Role == 1 && !anyStudentEmail) || (input.Role == 2 && !anyTeacherEmail)) return 3;
             var entity = new AccountEntity()
             {
                 Email = input.Email,
@@ -72,7 +72,7 @@ namespace EnglishApp.Services.Account
                     db.SaveChanges();
                 }
             }
-            return flag > -1;
+            return flag > -1 ? 1 : 0;
         }
 
         private string GenerateJwtToken(AccountDto input)
@@ -96,7 +96,7 @@ namespace EnglishApp.Services.Account
 
     public interface IAccountService
     {
-        Task<bool> RegisterAccount(RegisterDto input);
+        Task<int> RegisterAccount(RegisterDto input);
         Task<AccountDto> Login(LoginDto input);
     }
 }
